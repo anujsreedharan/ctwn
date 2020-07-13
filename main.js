@@ -2,10 +2,10 @@ const Discord = require("discord.js");
 const discordClient = new Discord.Client();
 const puppeteer = require("puppeteer");
 const express = require("express");
-const keepAlive = require('./server.js');
+
 
 const prefix = ",";
-keepAlive();
+
 discordClient.login(
   "process.env.TOKEN"
 );
