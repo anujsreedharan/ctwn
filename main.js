@@ -7,7 +7,7 @@ const express = require("express");
 const prefix = ",";
 
 discordClient.login(
-  "process.env.TOKEN"
+  process.env.TOKEN
 );
 discordClient.on("ready", () => {
   console.log(`Logged in as ${discordClient.user.tag}!`);
