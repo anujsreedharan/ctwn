@@ -333,7 +333,7 @@ discordClient.on("message", message => {
           });
           await browser.close();
         }); 
-       }else if (command === 'ona' ) {
+       }else if (command === 'airing' ) {
         message.react('✅')
         message.channel.send({
           embed: {
