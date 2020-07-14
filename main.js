@@ -5,7 +5,7 @@ const puppeteer = require("puppeteer");
 
 const prefix = ",";
 discordClient.login(
-  "NjkwOTU3NzIzMzA2NTU3NDkw.XnZEmw.f9aQr2_-Pp2Vk3qV-kxxfnecYso"
+  "process.env.TOKEN"
 );
 discordClient.on("ready", () => {
   console.log(`Logged in as ${discordClient.user.tag}!`);
