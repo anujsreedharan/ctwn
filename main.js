@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const discordClient = new Discord.Client();
 const puppeteer = require("puppeteer");
 
+
 const prefix = ",";
 discordClient.login(
   process.env.TOKEN
@@ -230,18 +231,21 @@ discordClient.on("message", message => {
         let esHandle = await page.$x(
           "/html/body/div[3]/div/div[2]/div[2]/div[5]/div[1]"
         );
+        let deHandle = await page.$x(
+          "/html/body/div[3]/div/div[2]/div[2]/div[1]"
+        );
         let dsHandle = await page.$x(
           "/html/body/div[3]/div/div[2]/div[3]/div[2]/div[1]/p"
         );
         let asasa = await page.evaluate(el => el.textContent, elHandle[0]);
         let bsbsb = await page.evaluate(ed => ed.textContent, ebHandle[0]);
         let cscsc = await page.evaluate(es => es.textContent, esHandle[0]);
-      
+        let scdsf = await page.evaluate(de => de.textContent, deHandle[0]);
         let fdfdf = await page.evaluate(ds => ds.textContent, dsHandle[0])
         console.log(asasa, "days");
         console.log(bsbsb, "hours");
         console.log(cscsc, "minutes");
-        
+        console.log(scdsf, "episode");
         console.log(fdfdf, "description")
         let rers = " days ";
         let timem = asasa.concat(rers);
@@ -252,7 +256,8 @@ discordClient.on("message", message => {
         let ctw = "";
         let last = "till the movie is released";
         let count = ctw.concat(timem, dskd, dsad, last);
-        let title = "  Attack on Titan : Chronicle ";
+        let ti = " of Attack on Titan : Chronicle ";
+        let title = scdsf.concat(ti);
         message.channel.send({
           embed: {
             color: 0xdb1e4a,
@@ -266,7 +271,80 @@ discordClient.on("message", message => {
         });
         await browser.close();
       });
+      } else if (command === "rez") {
+          message.react('✅').then(async f => {
+          const browser = await puppeteer.launch({
+            headless: true,
+            args: ["--no-sandbox"]
+          });
+          const page = await browser.newPage();
+          await page.goto("https://www.livechart.me/anime/9387");
+          //days
+          await page.waitForXPath(
+            "/html/body/div[3]/div/div[2]/div[2]/div[3]/div[1]"
+          );
+          //hours
+          await page.waitForXPath(
+            "/html/body/div[3]/div/div[2]/div[2]/div[4]/div[1]"
+          );
+          //minutes
+          await page.waitForXPath(
+            "/html/body/div[3]/div/div[2]/div[2]/div[5]/div[1]"
+          );
+          //episode
+          await page.waitForXPath("/html/body/div[3]/div/div[2]/div[2]/div[1]");
+          let elHandle = await page.$x(
+            "/html/body/div[3]/div/div[2]/div[2]/div[3]/div[1]"
+          );
+          let ebHandle = await page.$x(
+            "/html/body/div[3]/div/div[2]/div[2]/div[4]/div[1]"
+          );
+          let esHandle = await page.$x(
+            "/html/body/div[3]/div/div[2]/div[2]/div[5]/div[1]"
+          );
+          let deHandle = await page.$x(
+            "/html/body/div[3]/div/div[2]/div[2]/div[1]"
+          );
+          let asasa = await page.evaluate(el => el.textContent, elHandle[0]);
+          let bsbsb = await page.evaluate(ed => ed.textContent, ebHandle[0]);
+          let cscsc = await page.evaluate(es => es.textContent, esHandle[0]);
+          let scdsf = await page.evaluate(de => de.textContent, deHandle[0]);
+          console.log(asasa, "days");
+          console.log(bsbsb, "hours");
+          console.log(cscsc, "minutes");
+          console.log(scdsf, "episode");
+          let rers = " days ";
+          let timem = asasa.concat(rers);
+          let sers = " hours ";
+          let dskd = bsbsb.concat(sers);
+          let sww = " minutes ";
+          let dsad = cscsc.concat(sww);
+          let ctw = "";
+          let last = "till next episode ";
+          let count = ctw.concat(timem, dskd, dsad, last);
+          let ti = " of Re:Zero -Starting Life in Another World- 2nd Season Part 1 ";
+          let title = scdsf.concat(ti);
+          message.channel.send({
+            embed: {
+              color: 0xdb1e4a,
+              title: title,
+              description: ("Days:", count)
+            }
+          });
+          await browser.close();
+        }); 
+       }else if (command === 'ona' ) {
+        message.react('✅')
+        message.channel.send({
+          embed: {
+            color: 0xdb1e4a,
+            title: "Ona Series commands",
+            description:("`,sao` - sword art online \n `,op` - One Piece \n `,aot` - Attack on Titan: Chronicle \n `,goh` - god of highschool \n `,rez` - Re:Zero season 2 part 1 ")
+        }
+          
+      });
+       }
+
   }
- }
-});
+  });
 
