@@ -1,11 +1,9 @@
 const Discord = require("discord.js");
 const discordClient = new Discord.Client();
 const puppeteer = require("puppeteer");
-const express = require("express");
-
 
 const prefix = ",";
-
+keepAlive();
 discordClient.login(
   process.env.TOKEN
 );
@@ -202,6 +200,78 @@ discordClient.on("message", message => {
         });
         await browser.close();
       });
-    }
+    } else if (command === "aot") {
+        message.react('✅').then(async f => {
+        const browser = await puppeteer.launch({
+          headless: true,
+          args: ["--no-sandbox"]
+        });
+        const page = await browser.newPage();
+        await page.goto("https://www.livechart.me/anime/9996");
+        //days
+        await page.waitForXPath(
+          "/html/body/div[3]/div/div[2]/div[2]/div[3]/div[1]"
+        );
+        //hours
+        await page.waitForXPath(
+          "/html/body/div[3]/div/div[2]/div[2]/div[4]/div[1]"
+        );
+        //minutes
+        await page.waitForXPath(
+          "/html/body/div[3]/div/div[2]/div[2]/div[5]/div[1]"
+        );
+        //episode
+        await page.waitForXPath("/html/body/div[3]/div/div[2]/div[2]/div[1]");
+        let elHandle = await page.$x(
+          "/html/body/div[3]/div/div[2]/div[2]/div[3]/div[1]"
+        );
+        let ebHandle = await page.$x(
+          "/html/body/div[3]/div/div[2]/div[2]/div[4]/div[1]"
+        );
+        let esHandle = await page.$x(
+          "/html/body/div[3]/div/div[2]/div[2]/div[5]/div[1]"
+        );
+        let deHandle = await page.$x(
+          "/html/body/div[3]/div/div[2]/div[2]/div[1]"
+        );
+        let dsHandle = await page.$x(
+          "/html/body/div[3]/div/div[2]/div[3]/div[2]/div[1]/p"
+        );
+        let asasa = await page.evaluate(el => el.textContent, elHandle[0]);
+        let bsbsb = await page.evaluate(ed => ed.textContent, ebHandle[0]);
+        let cscsc = await page.evaluate(es => es.textContent, esHandle[0]);
+        let scdsf = await page.evaluate(de => de.textContent, deHandle[0]);
+        let fdfdf = await page.evaluate(ds => ds.textContent, dsHandle[0])
+        console.log(asasa, "days");
+        console.log(bsbsb, "hours");
+        console.log(cscsc, "minutes");
+        console.log(scdsf, "episode");
+        console.log(fdfdf, "description")
+        let rers = " days ";
+        let timem = asasa.concat(rers);
+        let sers = " hours ";
+        let dskd = bsbsb.concat(sers);
+        let sww = " minutes ";
+        let dsad = cscsc.concat(sww);
+        let ctw = "";
+        let last = "till the movie is released";
+        let count = ctw.concat(timem, dskd, dsad, last);
+        let ti = " of Attack on Titan : Chronicle ";
+        let title = scdsf.concat(ti);
+        message.channel.send({
+          embed: {
+            color: 0xdb1e4a,
+            title: title,
+            description: (count),
+            footer: {
+              icon_url: 'https://u.livechart.me/anime/9996/poster_image/acd189b4f31e23fe5d330fec1387b372.jpg?style=small&format=jpg',
+              text: fdfdf
+            }
+          }
+        });
+        await browser.close();
+      });
   }
+ }
 });
+
