@@ -3,7 +3,6 @@ const discordClient = new Discord.Client();
 const puppeteer = require("puppeteer");
 
 const prefix = ",";
-keepAlive();
 discordClient.login(
   process.env.TOKEN
 );
@@ -231,21 +230,18 @@ discordClient.on("message", message => {
         let esHandle = await page.$x(
           "/html/body/div[3]/div/div[2]/div[2]/div[5]/div[1]"
         );
-        let deHandle = await page.$x(
-          "/html/body/div[3]/div/div[2]/div[2]/div[1]"
-        );
         let dsHandle = await page.$x(
           "/html/body/div[3]/div/div[2]/div[3]/div[2]/div[1]/p"
         );
         let asasa = await page.evaluate(el => el.textContent, elHandle[0]);
         let bsbsb = await page.evaluate(ed => ed.textContent, ebHandle[0]);
         let cscsc = await page.evaluate(es => es.textContent, esHandle[0]);
-        let scdsf = await page.evaluate(de => de.textContent, deHandle[0]);
+      
         let fdfdf = await page.evaluate(ds => ds.textContent, dsHandle[0])
         console.log(asasa, "days");
         console.log(bsbsb, "hours");
         console.log(cscsc, "minutes");
-        console.log(scdsf, "episode");
+        
         console.log(fdfdf, "description")
         let rers = " days ";
         let timem = asasa.concat(rers);
@@ -256,8 +252,7 @@ discordClient.on("message", message => {
         let ctw = "";
         let last = "till the movie is released";
         let count = ctw.concat(timem, dskd, dsad, last);
-        let ti = " of Attack on Titan : Chronicle ";
-        let title = scdsf.concat(ti);
+        let title = "  Attack on Titan : Chronicle ";
         message.channel.send({
           embed: {
             color: 0xdb1e4a,
