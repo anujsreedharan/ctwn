@@ -338,8 +338,8 @@ discordClient.on("message", message => {
         message.channel.send({
           embed: {
             color: 0xdb1e4a,
-            title: "Ona Series commands",
-            description:("`,sao` - sword art online \n `,op` - One Piece \n `,aot` - Attack on Titan: Chronicle \n `,goh` - god of highschool \n `,rez` - Re:Zero season 2 part 1 ")
+            title: "Airing Series commands",
+            description:("`,sao` - Sword Art Online \n `,op` - One Piece \n `,aot` - Attack on Titan: Chronicle \n `,goh` - The God of Highschool \n `,rez` - Re:Zero season 2 part 1 ")
         }
           
       });
@@ -347,4 +347,3 @@ discordClient.on("message", message => {
 
   }
   });
-
